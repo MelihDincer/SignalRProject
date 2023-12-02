@@ -9,5 +9,8 @@
         public string ImageUrl { get; set; }    
         public bool ProductStatus { get; set; }    
 
+        //Bire çok ilişki
+        public int CategoryID { get; set; }
+        public Category Category { get; set; }
     }
 }
