@@ -10,14 +10,14 @@ namespace SignalR.DataAccessLayer.Concrete
             optionsBuilder.UseSqlServer("Server=DESKTOP-PBE5IS4\\SQLEXPRESS; initial Catalog=SignalRDb; integrated Security=true");
         }
         
-        DbSet<About> Abouts { get; set; }
-        DbSet<Booking> Bookings { get; set; }
-        DbSet<Category> Categories { get; set; }
-        DbSet<Contact> Contacts { get; set; }
-        DbSet<Discount> Discounts { get; set; }
-        DbSet<Feature> Features { get; set; }
-        DbSet<Product> Products { get; set; }
-        DbSet<SocialMedia> SocialMedias { get; set; }
-        DbSet<Testimonial> Testimonials { get; set; }
+        public DbSet<About> Abouts { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Discount> Discounts { get; set; }
+        public DbSet<Feature> Features { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<SocialMedia> SocialMedias { get; set; }
+        public DbSet<Testimonial> Testimonials { get; set; }
     }
 }
