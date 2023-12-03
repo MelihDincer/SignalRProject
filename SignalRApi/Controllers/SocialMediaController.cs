@@ -59,5 +59,12 @@ namespace SignalRApi.Controllers
             });
             return Ok("Sosyal Medya Bilgisi Güncellendi");
         }
+
+        [HttpGet("GetSocialMedia")]
+        public IActionResult GetSocialMedia(int id)
+        {
+            var values = _socialMediaService.TGetByID(id);
+            return Ok(values);
+        }
     }
 }
