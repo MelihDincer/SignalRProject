@@ -55,6 +55,7 @@ namespace SignalRApi.Controllers
             _testimonialService.TUpdate(new Testimonial()
             {
                 TestimonialID = updateTestimonialDto.TestimonialID,
+                Name = updateTestimonialDto.Name,
                 Title = updateTestimonialDto.Title,
                 Comment = updateTestimonialDto.Comment,
                 ImageUrl = updateTestimonialDto.ImageUrl,
