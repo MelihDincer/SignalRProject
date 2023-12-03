@@ -1,0 +1,46 @@
+﻿@model UpdateContactDto
+@{
+    ViewData["Title"] = "UpdateContact";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <h4 class="page-title">Ana Sayfa İletişim Bilgi İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">İletişim Bilgileri Güncelleme Sayfası</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <input type="hidden" asp-for="ContactID"/>
+                                <label for="Title">Lokasyonu Giriniz</label>
+                                <input type="text" asp-for="Location" class="form-control" id="Title">
+                            </div>
+                            <div class="form-group">
+                                <label for="PhoneNumber">Telefon Numarası Giriniz</label>
+                                <input type="text" asp-for="PhoneNumber" class="form-control" id="PhoneNumber">
+                            </div>
+                            <div class="form-group">
+                                <label for="Mail">Mail Adresi Giriniz</label>
+                                <input type="email" asp-for="Mail" class="form-control" id="Mail">
+                            </div>
+                            <div class="form-group">
+                                <label for="FooterDescription">Açıklama Giriniz</label>
+                                <textarea rows="5" class="form-control" asp-for="FooterDescription"></textarea>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <button class="btn btn-primary">İletişim Bilgi Yazısını Ekle</button>
+                            <a href="/Contact/Index/" class="btn btn-danger">Vazgeç</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
