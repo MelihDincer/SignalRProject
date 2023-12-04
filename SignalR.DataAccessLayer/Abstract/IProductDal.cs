@@ -6,5 +6,12 @@ namespace SignalR.DataAccessLayer.Abstract
     {
         //Ürünleri kategori bilgisi ile listeleme metodu imzası
         List<Product> GetProductsWithCategories();
+        int ProductCount();
+        int ProductCountByCategoryNameHamburger();
+        int ProductCountByCategoryNameDrink();
+        decimal ProductPriceAvg();
+        string ProductNameByMaxPrice();
+        string ProductNameByMinPrice();
+        decimal ProductPriceAvgByCategoryNameHamburger();
     }
 }
