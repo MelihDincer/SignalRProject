@@ -21,7 +21,7 @@ namespace SignalRApi.Hubs
             _menuTableService = menuTableService;
         }
 
-        //Client tarafına geldiğimizde invoke ile bu metodu çağıracağız. Bu metot içerisinde ReceiveCategoryCount u çağır.
+        //Client tarafına geldiğimizde index sayfasında invoke ile bu metodu çağıracağız. Bu metot içerisinde SendAsync metodu ile verilen ismi de çağır.
         public async Task SendStatistic()
         {
             //Kategori Sayısı
