@@ -1,1 +1,2 @@
-# SignalRProject
+## Proje yapım aşamasındadır...
+![Ekran görüntüsü 2023-12-06 213404](https://github.com/MelihDincer/SignalRProject/assets/115299123/4cd3d788-012e-4027-91ce-8004ea838a06)
