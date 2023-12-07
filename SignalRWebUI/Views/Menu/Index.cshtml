@@ -132,19 +132,18 @@
     @await Component.InvokeAsync("_UILayoutScriptPartialComponent")
 
     <script>
-
         function showproductid(value) {
             var id = value;
             $.ajax({
                 type: 'post',
                 data: { item: id },
+                url : "/Menu/AddBasket/" + id,
                 contentType: 'json',
                 success: function () {
                     swal("Seçilen Ürün ID:" + id, "Seçtiğiniz Ürün Sepete Eklendi!", "success");
                 }
             });
         };
-
     </script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
