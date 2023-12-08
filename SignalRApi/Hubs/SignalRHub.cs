@@ -11,14 +11,16 @@ namespace SignalRApi.Hubs
         private readonly IOrderService _orderService;
         private readonly IMoneyCaseService _moneyCaseService;
         private readonly IMenuTableService _menuTableService;
+        private readonly IBookingService _bookingService;
 
-        public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService)
+        public SignalRHub(ICategoryService categoryService, IProductService productService, IOrderService orderService, IMoneyCaseService moneyCaseService, IMenuTableService menuTableService, IBookingService bookingService)
         {
             _categoryService = categoryService;
             _productService = productService;
             _orderService = orderService;
             _moneyCaseService = moneyCaseService;
             _menuTableService = menuTableService;
+            _bookingService = bookingService;
         }
 
         //Client tarafına geldiğimizde index sayfasında invoke ile bu metodu çağıracağız. Bu metot içerisinde SendAsync metodu ile verilen ismi de çağır.
@@ -84,6 +86,11 @@ namespace SignalRApi.Hubs
             //Aktif Masa Sayısı
             var value3 = _menuTableService.TMenuTableCount();
             await Clients.All.SendAsync("ReceiveMenuTableCount", value3);
+        }
+        public async Task GetBookingList()
+        {
+            var values = _bookingService.TGetListAll();
+            await Clients.All.SendAsync("ReceiveBookingList", values);
         }
     }
 }
