@@ -2,6 +2,9 @@
 @{
     Layout = null;
     int count = 0;
+    decimal basketTotalPrice = 0;
+    decimal basketTotalKdv = 0;
+    decimal basketTotalPriceWithTax = 0;
 }
 
 
@@ -14,26 +17,28 @@
 
     <div class="hero_area">
 
-        @await Component.InvokeAsync("_UILayoutNavbarPartialComponent")    
+        @await Component.InvokeAsync("_UILayoutNavbarPartialComponent")
     </div>
     <br />
     <br />
     <div class="container-fluid">
-            <div class="row px-xl-5">
-                <div class="col-12">
+        <div class="row px-xl-5">
+            <div class="col-12">
                 <nav class="breadcrumb mb-30" style="background-color:#2f3640; color:#f5f6fa">
-                        <a class="breadcrumb-item text-white" href="/Default/Index/">Ana Sayfa</a>
-                        <a class="breadcrumb-item text-white" href="/Menu/Index/">Menü</a>
-                        <span class="breadcrumb-item active">Sepetiniz</span>
-                    </nav>
-                </div>
+                    <a class="breadcrumb-item text-white" href="/Default/Index/">Ana Sayfa</a>
+                    <a class="breadcrumb-item text-white" href="/Menu/Index/">Menü</a>
+                    <span class="breadcrumb-item active">Sepetiniz</span>
+                </nav>
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="row px-xl-5">
-                <div class="col-lg-8 table-responsive mb-5">
-                <table class="table table-borderless table-hover text-center mb-0" style="color:#2f3542; background-color:#d2dae2; font-weight:700; border-radius:5px">
-                    <thead style="background-color: #2f3640; color:#f5f6fa;">
+    </div>
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-lg-8 table-responsive mb-5">
+                @if (Model.Any())
+                {
+                    <table class="table table-borderless table-hover text-center mb-0" style="color:#2f3542; background-color:#d2dae2; font-weight:700; border-radius:5px">
+                        <thead style="background-color: #2f3640; color:#f5f6fa;">
                             <tr>
                                 <th>#</th>
                                 <th>Ürün Adı</th>
@@ -43,56 +48,68 @@
                                 <th>Sil</th>
                             </tr>
                         </thead>
-                    @foreach(var item in Model)
-                    {
-                        count++;
-                        <tbody class="align-middle">
-                            <tr>
-                                <td class="align-middle">@count</td>
-                                <td class="align-middle">@item.ProductName</td>
-                                <td class="align-middle">@item.Count</td>
-                                <td class="align-middle">@item.Price</td>
-                                <td class="align-middle">@item.TotalPrice</td>
-                                <td class="align-middle btn-delete"><a class="btn btn-sm btn-danger" href="/Baskets/DeleteBasket/@item.BasketID"><i class="fa fa-times"></i></a></td>
-                            </tr>
-                        </tbody>
-                    }                  
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            basketTotalPrice = Model.Sum(x => x.Price);
+                            basketTotalKdv = basketTotalPrice / 10;
+                            basketTotalPriceWithTax = basketTotalPrice + basketTotalKdv;
+                            <tbody class="align-middle">
+                                <tr>
+                                    <td class="align-middle">@count</td>
+                                    <td class="align-middle">@item.ProductName</td>
+                                    <td class="align-middle">@item.Count</td>
+                                    <td class="align-middle">@item.Price</td>
+                                    <td class="align-middle">@item.TotalPrice</td>
+                                    <td class="align-middle btn-delete"><a class="btn btn-sm btn-danger" href="/Basket/DeleteBasket/@item.BasketID"><i class="fa fa-times"></i></a></td>
+                                </tr>
+                            </tbody>
+                        }
                     </table>
-                </div>
-                <div class="col-lg-4 mt-3">
-                    <form>
-                        <div class="input-group">
-                            <input type="text" id="couponcode" class="form-control border-2 p-4" style="border-radius:5px; margin-right:7px" placeholder="Kupon Kodunu Giriniz..." />
-                            <div>
+                }
+                else
+                {
+                    <h4 class="mt-5 pl-5" style="color:darkred">
+                        Sepetinizde ürün bulunmamaktadır.
+                        <br /> <br>
+                        <span style="font-size:19px; font-family:cursive; font-weight:600;">Sepetinize hemen yeni ürün ekleyin: <a href="/Menu/Index/" class="badge badge-sm badge-danger">Menüyü İncele</a></span>
+                    </h4>
+                }
+            </div>
+            <div class="col-lg-4 mt-3">
+                <form>
+                    <div class="input-group">
+                        <input type="text" id="couponcode" class="form-control border-2 p-4" style="border-radius:5px; margin-right:7px" placeholder="Kupon Kodunu Giriniz..." />
+                        <div>
                             <a style="height:48px; padding-top:11px; font-weight:600; font-size:15px; font-family:cursive; color:#2f3640" class="btn btn-warning" id="btncouponcode">Uygula</a>
-                            </div>
                         </div>
-                    </form>
+                    </div>
+                </form>
                 <h5 class="section-title position-relative mb-3 mt-5"><span class="bg-warning pr-3" style="border-radius:5px; padding:11px; font-size:18px; font-family:cursive; color:#1e272e">Sepet Özeti</span></h5>
                 <div class="p-30 mb-5" style="background-color:#d2dae2; border-radius:5px">
-                        <div id="container" class="border-bottom pb-2">
-                            <div class="d-flex justify-content-between pt-4 px-3">
-                                <h6>Toplam Tutar</h6>
-                                <h6><span id="totalprice">200</span>₺</h6>
-                            </div>
+                    <div id="container" class="border-bottom pb-2">
+                        <div class="d-flex justify-content-between pt-4 px-3">
+                            <h6>Toplam Tutar</h6>
+                            <h6><span id="totalprice">@basketTotalPrice</span>₺</h6>
+                        </div>
                         <div class="d-flex justify-content-between pt-1 px-3">
-                            <h6 class="font-weight-medium">Kdv Oranı</h6>
-                            <h6><span id="totalprice" class="font-weight-medium">20</span>₺</h6>
+                            <h6 class="font-weight-medium">%10 KDV</h6>
+                            <h6><span id="totalprice" class="font-weight-medium">@basketTotalKdv</span>₺</h6>
                         </div>
                         <br />
-                        </div>
-                        <div>
+                    </div>
+                    <div>
                         <div class="d-flex justify-content-between mt-2 px-3 pt-2">
                             <h5>Toplam Tutar</h5>
-                            <h6><span id="totalpricewithkdv" class="font-weight-medium" style="padding-top:10px;"><b>220</b></span><b>₺</b></h6>
+                            <h6><span id="totalpricewithkdv" class="font-weight-medium" style="padding-top:10px;"><b>@basketTotalPriceWithTax</b></span><b>₺</b></h6>
                         </div>
                         <br />
                         <button id="btnchecked" class="btn btn-lg btn-block btn-info font-weight-bold">Siparişi Tamamla</button>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
     @await Component.InvokeAsync("_UILayoutFooterPartialComponent")
 
