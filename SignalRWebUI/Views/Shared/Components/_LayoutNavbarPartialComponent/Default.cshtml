@@ -1,4 +1,4 @@
-﻿@* NAVBAR *@
+﻿@* ADMIN NAVBAR *@
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -24,19 +24,19 @@
             });
 
             //Sağ üstteki bildirim Icon - Durumu false olan durumların listesi
-            connection.on("ReceiveNotificationCountByStatusFalse", (value) => {
+            connection.on("ReceiveNotificationListByFalse", (value) => {
                 console.log(value);
                 $("#notilist").empty(); //Bunu yapmazsak her defasında bildirimler kısmına ekleme yapacaktı.
                 for (var i = 0; i < value.length; i++) {
                     $("#notilist").append(`<a href="#">
-                      <div class="${value[i].type}"><i class="${value[i].icon}" > </i> </div >
+                      <div class="${value[i].type}"><i class="${value[i].icon}"></i> </div >
                       <div class="notif-content">
                       <span class="block" >
                       ${value[i].description}
                       </span>
                       <span class="time">${value[i].date}</span>
                       </div>
-                      < /a> `)
+                      </a>`)
                 };
             });
         });
@@ -86,25 +86,9 @@
                         </li>
                         <li>
                             <div class="notif-center">
+
                                 <div id="notilist"></div>
-                                <a href="#">
-                                    <div class="notif-icon notif-success"> <i class="la la-comment"></i> </div>
-                                    <div class="notif-content">
-                                        <span class="block">
-                                            Rahmad commented on Admin
-                                        </span>
-                                        <span class="time">12 minutes ago</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="notif-icon notif-danger"> <i class="la la-heart"></i> </div>
-                                    <div class="notif-content">
-                                        <span class="block">
-                                            Farrah liked Admin
-                                        </span>
-                                        <span class="time">17 minutes ago</span>
-                                    </div>
-                                </a>
+
                             </div>
                         </li>
                         <li>
