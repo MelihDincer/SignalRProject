@@ -11,5 +11,9 @@ namespace SignalR.BusinessLayer.Abstract
     {
         int TNotificationCountByStatusFalse();
         List<Notification> TGetAllNotificationByFalse();
+        void TNotificationChangeToTrue(int id); //Bildirimin türünü true yap. (Okundu)
+
+        void TNotificationChangeToFalse(int id); //Bildirimin türünü true yap. (Okundu)
+
     }
 }
