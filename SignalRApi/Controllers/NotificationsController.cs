@@ -66,10 +66,10 @@ namespace SignalRApi.Controllers
                 Type = updateNotificationDto.Type,
                 Icon = updateNotificationDto.Icon,
                 Description = updateNotificationDto.Description,
-                Date = updateNotificationDto.Date,
+                Date = Convert.ToDateTime(DateTime.Now.ToShortDateString()),
                 Status = updateNotificationDto.Status
             });
-            return Ok("Güncelleme Başarılı");
+            return Ok("Güncelleme başarılı");
         }
 
         [HttpGet("GetNotification")]
@@ -77,6 +77,20 @@ namespace SignalRApi.Controllers
         {
             var value = _notificationService.TGetByID(id);
             return Ok(value);
+        }
+
+        [HttpGet("NotificationStatusChangeToFalse")]
+        public IActionResult NotificationStatusChangeToFalse(int id)
+        {
+            _notificationService.TNotificationChangeToFalse(id);
+            return Ok("Güncelleme yapıldı");
+        }
+
+        [HttpGet("NotificationStatusChangeToTrue")]
+        public IActionResult NotificationStatusChangeToTrue(int id)
+        {
+            _notificationService.TNotificationChangeToTrue(id);
+            return Ok("Güncelleme yapıldı");
         }
     }
 }
