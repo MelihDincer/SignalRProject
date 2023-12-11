@@ -17,6 +17,7 @@ namespace SignalRWebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
+            //Burada id parametresi MenuTableID değerine karşılık gelmektedir.
             var responseMessage = await client.GetAsync("https://localhost:7029/api/Baskets/BasketListByMenuTableWithProductName?id=4");
             if(responseMessage.IsSuccessStatusCode)
             {
