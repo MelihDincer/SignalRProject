@@ -25,7 +25,7 @@
                 }).catch((err) => { console.log(err) });
 
                 connection.on("ReceiveBookingList", (value) => {
-                    let tablehtml = `<table class= "table mt-3">
+                    let tablehtml = `<table class= "table mt-3 text-center">
                                      <thead>
                                      <tr>
                                          <th scope="col">#</th>
@@ -35,18 +35,22 @@
                                          <th scope="col">Rezervasyon Durumu</th>
                                          <th scope="col">Sil</th>
                                          <th scope="col">Güncelle</th>
+                                         <th scope="col">Onayla</th>
+                                         <th scope="col">İptal Et</th>
                                      </tr>
                                      </thead>
                                      <tbody>`
                                      $.each(value,(index,item)=>{
                                          tablehtml+=`<tr>
-                                                     <td>${item.bookingID}</td>
+                                                     <th>${index+1}</th>
                                                      <td>${item.name}</td>
                                                      <td>${item.phone}</td>
                                                      <td>${item.personCount}</td>
-                                                     <td>${"Rezervasyon Alındı"}</td>
+                                                     <td>${item.description}</td>
                                                      <td><a href="/Booking/DeleteBooking/${item.bookingID}" class="btn btn-outline-danger btn-rounded" onclick="return confirm('Bu rezervasyonu silmek istediğinize emin misiniz?')">Sil</a></td>
                                                      <td><a href="/Booking/UpdateBooking/${item.bookingID}" class="btn btn-outline-success btn-rounded">Güncelle</a></td>
+                                                     <td><a href="/Booking/BookingStatusApproved/${item.bookingID}" class="btn btn-outline-info btn-rounded">Onayla</a></td>
+                                                     <td><a href="/Booking/BookingStatusCancelled/${item.bookingID}" class="btn btn-outline-dark btn-rounded">İptal Et</a></td>
                                                      </tr>`
                                      });
                     tablehtml += "</tbody></table>"
