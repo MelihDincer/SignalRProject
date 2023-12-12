@@ -100,6 +100,7 @@ namespace SignalRWebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateProduct(UpdateProductDto updateProductDto)
         {
+            updateProductDto.ProductStatus = true;
             var client = _httpClientFactory.CreateClient(); //Client oluşturduk.
             var jsonData = JsonConvert.SerializeObject(updateProductDto); //createProductDto dan gelen nesne örneğini json türe dönüştürdük.
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json"); //İçeriğimizin dönüşümü için StringContent sınıfından bir nesne türetip üçüncü overloadını bu şekilde kullandık. (içerik, türkçe karakteri destekle, medya türü)
