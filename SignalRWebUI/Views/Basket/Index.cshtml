@@ -2,8 +2,7 @@
 @{
     Layout = null;
     int count = 0;
-    int productCount = 1;
-    decimal productPrice = 0;
+    decimal totalPrice = 0;
     decimal basketTotalPrice = 0;
     decimal basketTotalKdv = 0;
     decimal basketTotalPriceWithTax = 0;
@@ -45,7 +44,7 @@
                                 <th>#</th>
                                 <th>Ürün Adı</th>
                                 <th>Adet</th>
-                                <th>Fiyat</th>
+                                <th>Birim Fiyatı</th>
                                 <th>Toplam</th>
                                 <th>Sil</th>
                             </tr>
@@ -53,9 +52,8 @@
                         @foreach (var item in Model)
                         {
                             count++;
-                            productCount = item.Count;
-                            productPrice = item.Price * productCount;
-                            basketTotalPrice = Model.Sum(x => x.Price) * productCount;
+                            totalPrice = (item.Price * item.Count);
+                            basketTotalPrice = Model.Sum(x => x.Price) * item.Count;
                             basketTotalKdv = basketTotalPrice / 10;
                             basketTotalPriceWithTax = basketTotalPrice + basketTotalKdv;
                             <tbody class="align-middle">
@@ -63,8 +61,8 @@
                                     <td class="align-middle">@count</td>
                                     <td class="align-middle">@item.ProductName</td>
                                     <td class="align-middle">@item.Count</td>
-                                    <td class="align-middle">@productPrice</td>
-                                    <td class="align-middle">@item.TotalPrice</td>
+                                    <td class="align-middle">@item.Price₺</td>
+                                    <td class="align-middle">@totalPrice₺</td>
                                     <td class="align-middle btn-delete"><a class="btn btn-sm btn-danger" href="/Basket/DeleteBasket/@item.BasketID"><i class="fa fa-times"></i></a></td>
                                 </tr>
                             </tbody>

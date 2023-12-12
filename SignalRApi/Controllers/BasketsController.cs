@@ -48,13 +48,14 @@ namespace SignalRApi.Controllers
         public IActionResult CreateBasket(CreateBasketDto createBasketDto)
         {
             using var context = new SignalRContext();
+            var productPrice = context.Products.Where(x => x.ProductID == createBasketDto.ProductID).Select(y => y.Price).FirstOrDefault();
             _basketService.TAdd(new Basket()
             {
                 ProductID = createBasketDto.ProductID,
                 Count = 1,
                 MenuTableID = 4,
-                Price = context.Products.Where(x=>x.ProductID == createBasketDto.ProductID).Select(y=>y.Price).FirstOrDefault(),
-                TotalPrice = 0
+                Price = productPrice,
+                TotalPrice = productPrice        
             });
             return Ok();
         }
