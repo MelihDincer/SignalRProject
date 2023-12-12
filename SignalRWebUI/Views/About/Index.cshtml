@@ -17,25 +17,23 @@
                         <div class="card-sub">
                             Hakkımızda alanıyla ilgili işlemleri yapabilirsiniz. Tema bütünlüğü için sadece 1 tane hakkımızda alanı oluşturmayı unutmayın.
                         </div>
-                        <table class="table mt-3 text-center">
+                        <table class="table mt-3">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Başlık</th>
-                                    <th scope="col">Açıklama</th>
-                                    <th scope="col">Sil</th>
-                                    <th scope="col">Güncelle</th>
+                                    <th class="text-center" scope="col">Başlık</th>
+                                    <th class="text-center" scope="col">Açıklama</th>
+                                    <th class="text-center" scope="col">Sil</th>
+                                    <th class="text-center" scope="col">Güncelle</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@item.AboutID</td>
-                                        <td>@item.Title</td>
+                                        <td class="text-center">@item.Title</td>
                                         <td>@item.Description</td>
-                                        <td><a href="/About/DeleteAbout/@item.AboutID" class="btn btn-outline-danger btn-rounded" onclick="return confirm('Hakkımda bilgisini silmek istediğinize emin misiniz?')">Sil</a></td>
-                                        <td><a href="/About/UpdateAbout/@item.AboutID" class="btn btn-outline-success btn-rounded">Güncelle</a></td>
+                                        <td class="text-center"><a href="/About/DeleteAbout/@item.AboutID" class="btn btn-outline-danger btn-rounded" onclick="return confirm('Hakkımda bilgisini silmek istediğinize emin misiniz?')">Sil</a></td>
+                                        <td class="text-center"><a href="/About/UpdateAbout/@item.AboutID" class="btn btn-outline-success btn-rounded">Güncelle</a></td>
                                     </tr>
                                 }
                             </tbody>
