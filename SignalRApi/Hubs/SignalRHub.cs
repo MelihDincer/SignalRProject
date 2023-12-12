@@ -24,6 +24,7 @@ namespace SignalRApi.Hubs
             _bookingService = bookingService;
             _notificationService = notificationService;
         }
+        static int clientCount = 0;
 
         //Client tarafına geldiğimizde index sayfasında invoke ile bu metodu çağıracağız. Bu metot içerisinde SendAsync metodu ile verilen ismi de çağır.
         public async Task SendStatistic()
@@ -111,6 +112,27 @@ namespace SignalRApi.Hubs
         {
             var value = _menuTableService.TGetListAll();
             await Clients.All.SendAsync("ReceiveMenuTableStatus", value);
+        }
+
+        //SignalR Mesajlaşma
+        public async Task SendMessage (string user, string message)
+        {
+            await Clients.All.SendAsync("ReceiveMessage", user, message);
+        }
+
+
+        //Client'a bağlı olan client sayısı
+        public override async Task OnConnectedAsync()
+        {
+            clientCount++;
+            await Clients.All.SendAsync("ReceiveClientCount", clientCount);
+            await base.OnConnectedAsync();
+        }
+        public override async Task OnDisconnectedAsync(Exception? exception)
+        {
+            clientCount--;
+            await Clients.All.SendAsync("ReceiveClientCount", clientCount);
+            await base.OnDisconnectedAsync(exception);
         }
     }
 }
