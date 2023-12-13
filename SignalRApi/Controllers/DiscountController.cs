@@ -67,5 +67,25 @@ namespace SignalRApi.Controllers
             var value = _discountService.TGetByID(id);
             return Ok(value);
         }
+
+        [HttpGet("ChangeStatusToTrue")]
+        public IActionResult ChangeStatusDiscountToTrue(int id)
+        {
+            _discountService.TChangeStatusToTrue(id);
+            return Ok("İndirim Durumu Aktif Hale Getirildi");
+        }
+
+        [HttpGet("ChangeStatusToFalse")]
+        public IActionResult ChangeStatusDiscountToFalse(int id)
+        {
+            _discountService.TChangeStatusToFalse(id);
+            return Ok("İndirim Durumu Pasif Hale Getirildi");
+        }
+
+        [HttpGet("GetListByStatusTrue")]
+        public IActionResult GetListByStatusTrue()
+        {
+            return Ok(_discountService.TGetListByStatusTrue());
+        }
     }
 }
