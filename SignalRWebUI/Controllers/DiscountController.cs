@@ -83,5 +83,19 @@ namespace SignalRWebUI.Controllers
             }
             return View();
         }
+
+        public async Task<IActionResult> ChangeStatusDiscountToFalse(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            await client.GetAsync($"https://localhost:7029/api/Discount/ChangeStatusToFalse?id={id}");
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> ChangeStatusDiscountToTrue(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            await client.GetAsync($"https://localhost:7029/api/Discount/ChangeStatusToTrue?id={id}");
+            return RedirectToAction("Index");
+        }
     }
 }
