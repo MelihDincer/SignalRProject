@@ -74,14 +74,14 @@ namespace SignalRApi.Controllers
         public IActionResult BookingStatusApproved(int id)
         {
             _bookingService.TBookingStatusApproved(id);
-            return Ok("Rezervasyon Açıklaması Güncellendi");
+            return Ok("Rezervasyon Durumu Aktif Hale Getirildi");
         }
 
         [HttpGet("BookingStatusCancelled")]
         public IActionResult BookingStatusCancelled(int id)
         {
             _bookingService.TBookingStatusCancelled(id);
-            return Ok("Rezervasyon Açıklaması Güncellendi");
+            return Ok("Rezervasyon Durumu Pasif Hale Getirildi");
         }
     }
 }
