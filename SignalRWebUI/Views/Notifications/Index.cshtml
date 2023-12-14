@@ -4,6 +4,7 @@
     Layout = "~/Views/AdminLayout/Index.cshtml";
     string badgeClass;
     string status;
+    int count = 0;
 }
 
 <div class="content">
@@ -35,20 +36,21 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
+                                    count++;
                                     if(item.Status == true)
                                     {
-                                        badgeClass = "badge badge-sm badge-success";
-                                        status = "Aktif";
+                                        badgeClass = "badge badge-success";
+                                        status = "Okundu";
                                     }
                                     else
                                     {
-                                        badgeClass = "badge badge-sm badge-danger";
-                                        status = "Pasif";
+                                        badgeClass = "badge badge-danger";
+                                        status = "Okunmadı";
                                     }
                                     <tr>
-                                        <td>@item.NotificationID</td>
+                                        <th>@count</th>
                                         <td>@item.Description</td>
-                                        <td>@item.Date</td>
+                                        <td>@item.Date.ToString("dd MMM yyyy")</td>
                                         <td><span class="@badgeClass">@status</span></td>
                                         <td><a href="/Notifications/DeleteNotification/@item.NotificationID" class="btn btn-outline-danger btn-rounded" onclick="return confirm('Bu bildirimi silmek istediğinize emin misiniz?')">Sil</a></td>
                                         <td><a href="/Notifications/UpdateNotification/@item.NotificationID" class="btn btn-outline-success btn-rounded">Güncelle</a></td>

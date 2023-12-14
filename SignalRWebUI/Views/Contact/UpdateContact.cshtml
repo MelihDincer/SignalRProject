@@ -29,13 +29,29 @@
                                 <input type="email" asp-for="Mail" class="form-control" id="Mail">
                             </div>
                             <div class="form-group">
-                                <label for="FooterDescription">Açıklama Giriniz</label>
+                                <label for="OpenDays">Açık Günler</label>
+                                <input type="text" asp-for="OpenDays" class="form-control" id="OpenDays">
+                            </div>
+                            <div class="form-group">
+                                <label for="OpenDaysDescription">Açık Günler Açıklama</label>
+                                <input type="text" asp-for="OpenDaysDescription" class="form-control" id="OpenDaysDescription">
+                            </div>
+                            <div class="form-group">
+                                <label for="OpenHours">Açık Saatler</label>
+                                <input type="text" asp-for="OpenHours" class="form-control" id="OpenHours">
+                            </div>
+                            <div class="form-group">
+                                <label for="FooterTitle">Alt Başlık</label>
+                                <input type="text" asp-for="FooterTitle" class="form-control" id="FooterTitle">
+                            </div>
+                            <div class="form-group">
+                                <label for="FooterDescription">Alt Açıklama Alanı</label>
                                 <textarea rows="5" class="form-control" asp-for="FooterDescription"></textarea>
                             </div>
                         </div>
                         <div class="card-action">
-                            <button class="btn btn-primary">İletişim Bilgi Yazısını Ekle</button>
-                            <a href="/Contact/Index/" class="btn btn-danger">Vazgeç</a>
+                            <button class="btn btn-success">Kaydet</button>
+                            <a href="/Contact/Index/" class="btn btn-dark">İptal</a>
                         </div>
                     </div>
                 </form>

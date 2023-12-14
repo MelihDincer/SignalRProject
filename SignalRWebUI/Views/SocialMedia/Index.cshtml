@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
 }
 
 <div class="content">
@@ -30,8 +31,9 @@
                             <tbody>
                                 @foreach (var item in Model)
                                 {
+                                    count++;
                                     <tr>
-                                        <td>@item.SocialMediaID</td>
+                                        <th>@count</th>
                                         <td>@item.Title</td>
                                         <td>@item.Url</td>
                                         <td><a href="/SocialMedia/DeleteSocialMedia/@item.SocialMediaID" class="btn btn-outline-danger btn-rounded" onclick="return confirm('Bu sosyal medyayı silmek istediğinize emin misiniz?')">Sil</a></td>
