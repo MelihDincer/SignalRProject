@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SignalRWebUI.Dtos.BookingDtos;
 using System.Text;
 
 namespace SignalRWebUI.Controllers
 {
+    [AllowAnonymous]
     public class BookATableController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
