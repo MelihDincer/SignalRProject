@@ -18,6 +18,16 @@ namespace SignalR.BusinessLayer.Concrete
             _bookingDal.Add(entity);
         }
 
+        public List<Booking> TApprovalPendingBookings()
+        {
+            return _bookingDal.ApprovalPendingBookings();
+        }
+
+        public List<Booking> TApprovedBookings()
+        {
+            return _bookingDal.ApprovedBookings();
+        }
+
         public void TBookingStatusApproved(int id)
         {
             _bookingDal.BookingStatusApproved(id);
@@ -26,6 +36,11 @@ namespace SignalR.BusinessLayer.Concrete
         public void TBookingStatusCancelled(int id)
         {
             _bookingDal.BookingStatusCancelled(id);
+        }
+
+        public List<Booking> TCancelledBookings()
+        {
+            return _bookingDal.CancelledBookings();
         }
 
         public void TDelete(Booking entity)
