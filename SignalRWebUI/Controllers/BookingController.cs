@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using Org.BouncyCastle.Utilities;
 using SignalRWebUI.Dtos.BookingDtos;
 using System.Text;
 
@@ -13,10 +15,39 @@ namespace SignalRWebUI.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IActionResult> Index()
+        //Onay Bekleyen Rezervasyonlar
+        public async Task<IActionResult> ApprovalPendingBookingList()
         {
             var client = _httpClientFactory.CreateClient(); //Client(istemci) oluşturuldu.
-            var responseMessage = await client.GetAsync("https://localhost:7029/api/Booking"); //Listeleme işlemi için GetAsync isteğinde bulunduk.
+            var responseMessage = await client.GetAsync("https://localhost:7029/api/Booking/ApprovalPendingBookingList"); //Listeleme işlemi için GetAsync isteğinde bulunduk.
+            if (responseMessage.IsSuccessStatusCode) //Başarılı durum kodu dönerse
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync(); //Response'dan gelen veriyi jsonData değişkenine atadık.
+                var values = JsonConvert.DeserializeObject<List<ResultBookingDto>>(jsonData); //Json türündeki bu veriyi deserialize ederek tabloda görüntüleyebileceğimiz bir türe dönüştürdük.
+                return View(values);
+            }
+            return View();
+        }
+
+        //Onaylanan Rezervasyonlar
+        public async Task<IActionResult> ApprovedBookingList()
+        {
+            var client = _httpClientFactory.CreateClient(); //Client(istemci) oluşturuldu.
+            var responseMessage = await client.GetAsync("https://localhost:7029/api/Booking/ApprovedBookingList"); //Listeleme işlemi için GetAsync isteğinde bulunduk.
+            if (responseMessage.IsSuccessStatusCode) //Başarılı durum kodu dönerse
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync(); //Response'dan gelen veriyi jsonData değişkenine atadık.
+                var values = JsonConvert.DeserializeObject<List<ResultBookingDto>>(jsonData); //Json türündeki bu veriyi deserialize ederek tabloda görüntüleyebileceğimiz bir türe dönüştürdük.
+                return View(values);
+            }
+            return View();
+        }
+
+        //İptal Edilen Rezervasyonlar
+        public async Task<IActionResult> CancelledBookingList()
+        {
+            var client = _httpClientFactory.CreateClient(); //Client(istemci) oluşturuldu.
+            var responseMessage = await client.GetAsync("https://localhost:7029/api/Booking/CancelledBookingList"); //Listeleme işlemi için GetAsync isteğinde bulunduk.
             if (responseMessage.IsSuccessStatusCode) //Başarılı durum kodu dönerse
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync(); //Response'dan gelen veriyi jsonData değişkenine atadık.
@@ -42,7 +73,7 @@ namespace SignalRWebUI.Controllers
             var responseMessage = await client.PostAsync("https://localhost:7029/api/Booking", stringContent); //Ekleme işlemi için PostAsync isteğinde bulunduk.
             if (responseMessage.IsSuccessStatusCode) //Başarılı durum kodu dönerse
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("ApprovalPendingBookingList");
             }
             return View();
         }
@@ -53,7 +84,7 @@ namespace SignalRWebUI.Controllers
             var responseMessage = await client.DeleteAsync($"https://localhost:7029/api/Booking?id={id}"); //Silme işlemi için DeleteAsync isteğinde bulunduk.
             if (responseMessage.IsSuccessStatusCode) //Başarılı durum kodu dönerse
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("ApprovalPendingBookingList");
             }
             return View();
         }
@@ -61,6 +92,11 @@ namespace SignalRWebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateBooking(int id)
         {
+            List<SelectListItem> bookingDescription = new List<SelectListItem>();
+            bookingDescription.Add(new SelectListItem { Text = "Rezervasyon Onaylandı", Value = "Rezervasyon Onaylandı" });
+            bookingDescription.Add(new SelectListItem { Text = "Rezervasyon İptal Edildi", Value = "Rezervasyon İptal Edildi" });
+            ViewBag.description = bookingDescription;
+
             var client = _httpClientFactory.CreateClient(); //Client oluşturduk.
             var responseMessage = await client.GetAsync($"https://localhost:7029/api/Booking/GetBooking?id={id}"); //Güncelleme sayfasında kategori bilgisini getirmek için GetAsync isteğinde bulunduk.
             if (responseMessage.IsSuccessStatusCode) //Başarılı durum kodu dönerse
@@ -81,7 +117,7 @@ namespace SignalRWebUI.Controllers
             var responseMessage = await client.PutAsync("https://localhost:7029/api/Booking", stringContent); //Güncelleme işlemi için PutAsync isteğinde bulunduk.
             if (responseMessage.IsSuccessStatusCode) //Başarılı durum kodu dönerse
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("ApprovalPendingBookingList");
             }
             return View();
         }
@@ -90,14 +126,14 @@ namespace SignalRWebUI.Controllers
         {
             var client = _httpClientFactory.CreateClient();
             await client.GetAsync($"https://localhost:7029/api/Booking/BookingStatusApproved?id={id}");
-            return RedirectToAction("Index");
+            return RedirectToAction("ApprovedBookingList");
         }
 
         public async Task<IActionResult> BookingStatusCancelled(int id)
         {
             var client = _httpClientFactory.CreateClient();
             await client.GetAsync($"https://localhost:7029/api/Booking/BookingStatusCancelled?id={id}");
-            return RedirectToAction("Index");
+            return RedirectToAction("CancelledBookingList");
         }
     }
 }
