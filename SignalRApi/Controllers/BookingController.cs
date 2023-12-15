@@ -58,6 +58,7 @@ namespace SignalRApi.Controllers
                 PersonCount = updateBookingDto.PersonCount,
                 Phone = updateBookingDto.Phone,
                 Date = updateBookingDto.Date,
+                Description = updateBookingDto.Description,
             };
             _bookingService.TUpdate(booking);
             return Ok("Rezervasyon Güncellendi");
@@ -82,6 +83,24 @@ namespace SignalRApi.Controllers
         {
             _bookingService.TBookingStatusCancelled(id);
             return Ok("Rezervasyon Durumu Pasif Hale Getirildi");
+        }
+
+        [HttpGet("ApprovalPendingBookingList")]
+        public IActionResult ApprovalPendingBookingList()
+        {
+            return Ok(_bookingService.TApprovalPendingBookings());
+        }
+
+        [HttpGet("ApprovedBookingList")]
+        public IActionResult ApprovalBookingList()
+        {
+            return Ok(_bookingService.TApprovedBookings());
+        }
+
+        [HttpGet("CancelledBookingList")]
+        public IActionResult CancelledBookingList()
+        {
+            return Ok(_bookingService.TCancelledBookings());
         }
     }
 }
