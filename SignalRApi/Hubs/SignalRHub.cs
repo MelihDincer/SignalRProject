@@ -112,10 +112,18 @@ namespace SignalRApi.Hubs
             await Clients.All.SendAsync("ReceiveTotalPriceBySaladCategory", value11);
         }
 
+        //Rezervasyon Listesi
         public async Task GetBookingList()
         {
-            var values = _bookingService.TGetListAll();
-            await Clients.All.SendAsync("ReceiveBookingList", values);
+            //Onay Bekleyen Rezervasyonlar
+            var values1 = _bookingService.TApprovalPendingBookings();
+            await Clients.All.SendAsync("ReceiveApprovalPendingBookingList", values1);
+            //Onaylanan Rezervasyonlar
+            var values2 = _bookingService.TApprovedBookings();
+            await Clients.All.SendAsync("ReceiveApprovedBookingList", values2);
+            //İptal Edilen Rezervasyonlar
+            var values3 = _bookingService.TCancelledBookings();
+            await Clients.All.SendAsync("ReceiveCancelledBookingList", values3);
         }
 
         //Bildirimler Bölümü
