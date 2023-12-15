@@ -1,4 +1,4 @@
-## **Traversal Rezervasyon Projesi**
+## **SignalR ile QR Kodlu Restoran Projesi**
 #### Merhaba, bu projemizde bir restoran web sayfası yapmaya çalıştık. Projede eksik bölümler zamanla tamamlanacaktır.
 
 ### **Proje İçeriği**
