@@ -6,5 +6,8 @@ namespace SignalR.BusinessLayer.Abstract
     {
         void TBookingStatusApproved(int id); //Onaylandı
         void TBookingStatusCancelled(int id); //İptal edildi
+        List<Booking> TApprovalPendingBookings(); //Onay Bekleyen Rezervasyonlar
+        List<Booking> TApprovedBookings(); //Onaylanan Rezervasyonlar
+        List<Booking> TCancelledBookings(); //İptal Edilen Rezervasyonlar
     }
 }
