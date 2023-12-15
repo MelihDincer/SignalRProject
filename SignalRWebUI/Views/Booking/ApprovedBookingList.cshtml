@@ -1,0 +1,81 @@
+﻿@model List<ResultBookingDto>
+@{
+    ViewData["Title"] = "ApprovedBookingList";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+
+<div class="content">
+    <div class="container-fluid">
+
+        <script type="text/javascript">
+            $(document).ready(() => {
+                var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7029/SignalRHub").build();
+                $("#connstatus").text(connection.state);
+
+                connection.start().then(() => {
+                    $("#connstatus").text(connection.state);
+                    setInterval(() => {
+                        connection.invoke("GetBookingList");
+                    }, 2000) //2 saniye
+                }).catch((err) => { console.log(err) });
+
+                connection.on("ReceiveApprovedBookingList", (value) => {
+                    let tablehtml = `<table class= "table mt-3 text-center">
+                                                 <thead>
+                                                 <tr>
+                                                     <th scope="col">#</th>
+                                                     <th scope="col">Ad Soyad</th>
+                                                     <th scope="col">Telefon</th>
+                                                     <th scope="col">Kişi Sayısı</th>
+                                                     <th scope="col">Rezervasyon Durumu</th>
+                                                     <th scope="col">Sil</th>
+                                                     <th scope="col">Güncelle</th>
+                                                     <th scope="col">İptal Et</th>
+                                                 </tr>
+                                                 </thead>
+                                                 <tbody>`
+                    $.each(value, (index, item) => {
+                        tablehtml += `<tr>
+                                                                 <th>${index + 1}</th>
+                                                                 <td>${item.name}</td>
+                                                                 <td>${item.phone}</td>
+                                                                 <td>${item.personCount}</td>
+                                                                 <td><span class="badge badge-success">${item.description}</span></td>
+                                                                 <td><a href="/Booking/DeleteBooking/${item.bookingID}" class="btn btn-outline-danger btn-rounded" onclick="return confirm('Bu rezervasyonu silmek istediğinize emin misiniz?')">Sil</a></td>
+                                                                 <td><a href="/Booking/UpdateBooking/${item.bookingID}" class="btn btn-outline-success btn-rounded">Güncelle</a></td>
+                                                                 <td><a href="/Booking/BookingStatusCancelled/${item.bookingID}" class="btn btn-outline-dark btn-rounded">İptal Et</a></td>
+                                                                 </tr>`
+                    });
+                    tablehtml += "</tbody></table>"
+                    $("#bookingApprovedList").html(tablehtml);
+                });
+            });
+        </script>
+        <h4 class="page-title">Rezervasyon İşlemleri</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">Onaylanan Rezervasyon Listesi</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-sub">
+                            Rezervasyon ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz. <small class="text-danger">Rezervasyon listesinin görüntülenmesi için 2 saniye bekleyiniz.</small>
+                        </div>
+
+                        <div id="bookingApprovedList"></div>
+
+                        <a href="/Booking/CreateBooking/" class="btn btn-primary">Yeni Rezervasyon Girişi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

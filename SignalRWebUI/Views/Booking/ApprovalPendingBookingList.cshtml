@@ -1,6 +1,6 @@
 ﻿@model List<ResultBookingDto>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ApprovalPendingBookingList";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
@@ -24,7 +24,7 @@
                     }, 2000) //2 saniye
                 }).catch((err) => { console.log(err) });
 
-                connection.on("ReceiveBookingList", (value) => {
+                connection.on("ReceiveApprovalPendingBookingList", (value) => {
                     let tablehtml = `<table class= "table mt-3 text-center">
                                      <thead>
                                      <tr>
@@ -46,7 +46,7 @@
                                                      <td>${item.name}</td>
                                                      <td>${item.phone}</td>
                                                      <td>${item.personCount}</td>
-                                                     <td>${item.description}</td>
+                                                     <td><span class="badge badge-warning">${item.description}</span></td>
                                                      <td><a href="/Booking/DeleteBooking/${item.bookingID}" class="btn btn-outline-danger btn-rounded" onclick="return confirm('Bu rezervasyonu silmek istediğinize emin misiniz?')">Sil</a></td>
                                                      <td><a href="/Booking/UpdateBooking/${item.bookingID}" class="btn btn-outline-success btn-rounded">Güncelle</a></td>
                                                      <td><a href="/Booking/BookingStatusApproved/${item.bookingID}" class="btn btn-outline-info btn-rounded">Onayla</a></td>
@@ -54,7 +54,7 @@
                                                      </tr>`
                                      });
                     tablehtml += "</tbody></table>"
-                    $("#bookingList").html(tablehtml);
+                    $("#bookingApprovalPendingList").html(tablehtml);
                 });
             });
         </script>
@@ -63,14 +63,14 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-title">Rezervasyon Listesi</div>
+                        <div class="card-title">Onay Bekleyen Rezervasyon Listesi</div>
                     </div>
                     <div class="card-body">
                         <div class="card-sub">
-                            Rezervasyon ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz.
+                            Rezervasyon ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz. <small class="text-danger">Rezervasyon listesinin görüntülenmesi için 2 saniye bekleyiniz.</small>
                         </div>
 
-                        <div id="bookingList"></div>
+                        <div id="bookingApprovalPendingList"></div>
 
                         <a href="/Booking/CreateBooking/" class="btn btn-primary">Yeni Rezervasyon Girişi</a>
                     </div>
