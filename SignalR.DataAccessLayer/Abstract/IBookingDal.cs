@@ -6,5 +6,8 @@ namespace SignalR.DataAccessLayer.Abstract
     {
         void BookingStatusApproved(int id); //Onaylandı
         void BookingStatusCancelled(int id); //İptal edildi
+        List<Booking> ApprovalPendingBookings(); //Onay Bekleyen Rezervasyonlar
+        List<Booking> ApprovedBookings(); //Onaylanan Rezervasyonlar
+        List<Booking> CancelledBookings(); //İptal Edilen Rezervasyonlar
     }
 }
