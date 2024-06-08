@@ -1,13 +1,27 @@
-## **SignalR ile QR Kodlu Restoran Projesi**
-#### Merhaba, bu projemizde bir restoran web sayfası yapmaya çalıştık. Projede eksik bölümler zamanla tamamlanacaktır.
+## Restaurant Sipariş Yönetim Sistemi 🍔🚀
 
-### **Proje İçeriği**
-#### Bu projede; misafirlerimizin restoranımız ile ilgili bilgilere ulaşabileceği, menümüzü görüntüleyebileceği, ürünleri mevcut sepetine ekleyip kendi sepetini görüntüleyebileceği ve ürün fiyatlarının ve otomatik olarak hesaplanan ücretleri görüntüleyebileceği, yeni bir rezervasyon oluşturabileceği bir vitrin paneli; admin yetkisine sahip yetkili kişilerin de ana sayfada revize işlemleri yapabileceği, SignalR ile gerçekleştirilmiş anlık istatistik sayfalarını görüntüleyebileceği, oluşturulan rezervasyon bilgilerini görüntüleyip bu rezervasyonları onaylama-iptal etme-silme ve güncelleme işlemlerini yapabildiği, aynı zamanda istenilen bir mail adresine mail gönderebildiği ve de bir QR Kod oluşturabileceği bir sayfanın yer aldığı Admin Paneli gibi özellikler mevcuttur. Backend tarafında kullandığımız Api yapısını UI tarafında consume ederek işlemlerimizi gerçekleştirdik. Projede mümkün olduğunca mimariye ve solid prensiplerine sadık kalarak clean code prensiplerinde kod yazdık. Proje geliştirilmeye açık bir proje olup, eksik kısımlar yer almaktadır. Eksik olan kısımlar farklı projelerde yapıldığından ve de bu projenin de bir eğitim projesi olduğunu düşünürsek yeterli alt yapıya sahip olduğunu söyleyebilirim. Proje ekran görüntülerini sizinle paylaşıyor olacağım...
+Bu proje, bir restoranda kullanılmak üzere geliştirilen bir sipariş yönetim sistemidir. Müşterilerin yemek siparişi vermesini sağlar ve işletme personelinin bu siparişleri yönetmesine olanak tanır.
 
-*Bu Projede Değinilen Konu Başlıkları:*
-#### Asp.Net Core 6.0, Asp.Net Core Api, SignalR, Dto, AutoMapper, N Tier Architecture, İlişkili Tablolar ve MSSQL, HTML-CSS-BootStrap, JavaScript, Ajax, EntityFramework-Linq, SweetAlert, Sepet İşlemleri, Rezervasyon İşlemleri, Anlık İstatistikler, Anlık Mesajlaşma, Anlık Bildirimler, MailKit Kütüphanesi ile Mail Gönderme İşlemleri ve daha fazlası...
+## Kullanılan Teknolojiler
+- ASP.NET Core 6.0: ASP .NET Core, web uygulaması geliştirmek için kullanılan bir frameworktür. Bu proje de geliştirilirken ASP.NET Core'un 6.0 sürümü kullanıldı.
+- SignalR: Projede  ve istatistiklerin anlık olarak görüntülenebilmesi ve gerçek zamanlı iletişim sağlanabilmesi için SignalR kütüphanesi kullanıldı. Bu sayede sayfa yenilenmeden, yapılan değişiklikler anlık olarak kullanıcı tarafından görüntülenebilmesi sağlandı.
+- Entity Framework Core: Veritabanı işlemlerini yönetmek için, bu ORM aracını kullanıldı.
+- Bootstrap: Kullanıcı arayüzü tasarımında Bootstrap kütüphanesinden faydalanıldı.
+- QR Code Generator: Siparişleri takip etmek için QR kod oluşturan bir kütüphane kullanıldı.
+- SMTP Mail Service: Yöneticiye siparişleri ve güncellemeleri göndermek için, bu e-posta entegrasyonu kullanıldı.
+- ASP.NET Identity: Projede güvenlik amaçlı kimlik doğrulama ve yetkilendirme sistemi kurmak için kullanıldı.
+- AJAX: Asenkron veri alışverişi için kullanıldı.
 
-### **Proje İçerisinden Bazı Görseller:**
+## Özellikler
+- Müşterilerin yemek siparişi verebilmesi.
+- Gerçek zamanlı sipariş güncellemeleri için SignalR entegrasyonu.
+- Siparişlerin QR kodlarıyla verebilmesi (Müşteriye gönderilir).
+- Yöneticiye siparişleri ve güncellemeler için e-posta bildirimleri.
+- Kimlik doğrulama ve yetkilendirme için ASP.NET Identity sistemi.
+- AJAX kullanarak asenkron veri alışverişi.
+- Kullanıcıların profil bilgilerini güncelleme ve sipariş geçmişini görüntüleme.
+
+## Resimler
 ![1](https://github.com/MelihDincer/SignalRProject/assets/115299123/1cc08934-3b09-4456-a0ee-0104bbf89703)
 ![2](https://github.com/MelihDincer/SignalRProject/assets/115299123/7748fde2-ba2d-43fb-b2bc-8f71d324ef58)
 ![3](https://github.com/MelihDincer/SignalRProject/assets/115299123/b6ceb88a-0dae-4d48-b355-c8b1c5249728)
@@ -28,3 +42,5 @@
 ![18](https://github.com/MelihDincer/SignalRProject/assets/115299123/4f5995b3-39e7-4bd9-b7f0-3267531ba8b7)
 ![19](https://github.com/MelihDincer/SignalRProject/assets/115299123/01da919c-859d-472a-9889-91444876e01f)
 ![20](https://github.com/MelihDincer/SignalRProject/assets/115299123/56fcde5e-8f1e-4105-89a2-38d2f20dedcd)
+
+
