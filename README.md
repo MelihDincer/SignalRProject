@@ -2,6 +2,16 @@
 
 Bu proje, bir restoranda kullanılmak üzere geliştirilen bir sipariş yönetim sistemidir. Müşterilerin yemek siparişi vermesini sağlar ve işletme personelinin bu siparişleri yönetmesine olanak tanır.
 
+## Projeye Genel Bakış
+Projede N Katmanlı mimari kullanılmıştır.
+
+-Entity Katmanı
+-DataAccess Katmanı
+-Business Katmanı
+-Dto Katmanı
+-SignalR Api
+-SignalR Web UI
+
 ## Kullanılan Teknolojiler
 - ASP.NET Core 6.0: ASP .NET Core, web uygulaması geliştirmek için kullanılan bir frameworktür. Bu proje de geliştirilirken ASP.NET Core'un 6.0 sürümü kullanıldı.
 - SignalR: Projede  ve istatistiklerin anlık olarak görüntülenebilmesi ve gerçek zamanlı iletişim sağlanabilmesi için SignalR kütüphanesi kullanıldı. Bu sayede sayfa yenilenmeden, yapılan değişiklikler anlık olarak kullanıcı tarafından görüntülenebilmesi sağlandı.
