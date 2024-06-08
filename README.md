@@ -27,6 +27,9 @@ Bu proje, bir restoranda kullanılmak üzere geliştirilen bir sipariş yönetim
 ![2](https://github.com/MelihDincer/SignalRProject/assets/115299123/7748fde2-ba2d-43fb-b2bc-8f71d324ef58)
 
 
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"> 
+
+
 ### UI 
 ![3](https://github.com/MelihDincer/SignalRProject/assets/115299123/b6ceb88a-0dae-4d48-b355-c8b1c5249728)
 ![4](https://github.com/MelihDincer/SignalRProject/assets/115299123/dd4d9c3b-0db5-46c6-9e7a-34fbf4cbf4a7)
@@ -35,6 +38,9 @@ Bu proje, bir restoranda kullanılmak üzere geliştirilen bir sipariş yönetim
 ![7](https://github.com/MelihDincer/SignalRProject/assets/115299123/765aad42-25f6-43c9-b231-728a52734263)
 ![8](https://github.com/MelihDincer/SignalRProject/assets/115299123/85203fb1-d8d9-4eab-9754-58df76530410)
 ![16](https://github.com/MelihDincer/SignalRProject/assets/115299123/3fe11f89-fd49-4770-bd05-dc022f48d85d)
+
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"> 
 
 
 ### Admin Paneli
@@ -51,6 +57,9 @@ Bu proje, bir restoranda kullanılmak üzere geliştirilen bir sipariş yönetim
 ![20](https://github.com/MelihDincer/SignalRProject/assets/115299123/56fcde5e-8f1e-4105-89a2-38d2f20dedcd)
 
 
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"> 
+
+
 ### API
 ![API1](https://github.com/MelihDincer/SignalRProject/assets/115299123/145f2720-70d4-4a86-b78c-af5d1ec964be)
 ![API2](https://github.com/MelihDincer/SignalRProject/assets/115299123/91c88c0f-54e4-450d-9e4f-af922be6fe2c)
@@ -59,3 +68,11 @@ Bu proje, bir restoranda kullanılmak üzere geliştirilen bir sipariş yönetim
 ![API5](https://github.com/MelihDincer/SignalRProject/assets/115299123/206b015a-3f7f-4319-aa79-21be4d06e5ae)
 
 
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"> 
+
+
+### İLİŞKİSEL VERİTABANI DİAGRAMI
+![SignalR Relationship](https://github.com/MelihDincer/SignalRProject/assets/115299123/748d6c43-e147-49f3-b213-b389018104ae)
+
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"> 
