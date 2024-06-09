@@ -1,4 +1,4 @@
-## Restaurant Sipariş Yönetim Sistemi 🍔🚀
+## Restoran Sipariş Yönetim Sistemi 🍕
 
 Bu proje, bir restoranda kullanılmak üzere geliştirilen bir sipariş yönetim sistemidir. Müşterilerin yemek siparişi vermesini sağlar ve işletme personelinin bu siparişleri yönetmesine olanak tanır.
 
