@@ -31,7 +31,7 @@ Projede N Katmanlı mimari kullanılmıştır.
 - AJAX kullanarak asenkron veri alışverişi.
 - Kullanıcıların profil bilgilerini güncelleme ve sipariş geçmişini görüntüleme.
 
-## Proje İçerisinden Görseller
+## Görseller
 ### Kullanıcı Kayıt Olma ve Giriş Sayfaları
 ![1](https://github.com/MelihDincer/SignalRProject/assets/115299123/1cc08934-3b09-4456-a0ee-0104bbf89703)
 ![2](https://github.com/MelihDincer/SignalRProject/assets/115299123/7748fde2-ba2d-43fb-b2bc-8f71d324ef58)
@@ -81,7 +81,7 @@ Projede N Katmanlı mimari kullanılmıştır.
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif"> 
 
 
-### İLİŞKİSEL VERİTABANI DİAGRAMI
+### İlişkisel Veritabanı Diagramı
 ![SignalR Relationship](https://github.com/MelihDincer/SignalRProject/assets/115299123/748d6c43-e147-49f3-b213-b389018104ae)
 
 
