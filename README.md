@@ -9,8 +9,8 @@ Projede N Katmanlı mimari kullanılmıştır.
 - DataAccess Katmanı
 - Business Katmanı
 - Dto Katmanı
-- SignalR Api
-- SignalR Web UI
+- API Katmanı
+- UI Katmanı
 
 ## Kullanılan Teknolojiler
 - ASP.NET Core 6.0: ASP .NET Core, web uygulaması geliştirmek için kullanılan bir frameworktür. Bu proje de geliştirilirken ASP.NET Core'un 6.0 sürümü kullanıldı.
