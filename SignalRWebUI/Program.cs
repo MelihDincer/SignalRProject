@@ -6,16 +6,16 @@ using SignalR.EntityLayer.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var requireAuthorizePolicy= new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build(); //Authenticated kullanýcýyý zorunlu kýl.
+var requireAuthorizePolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build(); //Authenticated kullanýcýyý zorunlu kýl.
 // Add services to the container.
 builder.Services.AddDbContext<SignalRContext>();
 //Register Konfigürasyonu
-builder.Services.AddIdentity<AppUser,AppRole>().AddEntityFrameworkStores<SignalRContext>();
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<SignalRContext>();
 builder.Services.AddHttpClient();
 //Bütün controllerlarda aþaðýdaki filtreyi uygula
 builder.Services.AddControllersWithViews(opt =>
 {
-   opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
+    opt.Filters.Add(new AuthorizeFilter(requireAuthorizePolicy));
 });
 
 builder.Services.ConfigureApplicationCookie(opts =>
@@ -24,6 +24,14 @@ builder.Services.ConfigureApplicationCookie(opts =>
 });
 
 var app = builder.Build();
+
+app.UseStatusCodePages(async x =>
+    {
+        if (x.HttpContext.Response.StatusCode == 404)
+        {
+            x.HttpContext.Response.Redirect("/Error/NotFound404Page/");
+        }
+    });
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

@@ -1,4 +1,60 @@
 ﻿@model List<ResultProductDto>
+
+
+<style>
+    /* Bu stil sadece sizin özel kartınızı etkilemeli */
+    .my-custom-product-card .img-box {
+        height: 220px; /* Görselin yüksekliğini ayarlayın */
+        padding: 0 !important; /* Mevcut 25px padding'i sıfırlar */
+        margin: 0 !important;
+        overflow: hidden;
+        /* Kartın üst oval kenarlarını uygulayın */
+        border-radius: 15px 15px 0 0 !important;
+        /* Flex ayarlarını kaldırın veya sıfırlayın */
+        display: block !important;
+        background: none !important; /* Gereksiz arka planı kaldırın */
+    }
+
+        .my-custom-product-card .img-box img {
+            width: 100% !important;
+            height: 100% !important; /* Kutunun yüksekliğini %100 doldurun */
+            max-width: none !important; /* Maksimum genişlik kısıtlamasını kaldırın */
+            max-height: none !important; /* Maksimum yükseklik kısıtlamasını kaldırın */
+            /* RESMİ KUTUNUN TAMAMINA GERMEDEN KESEREK SAKLAR */
+            object-fit: cover !important;
+            display: block !important;
+            /* Resme de üst ovali uygulayın */
+            border-radius: 15px 15px 0 0 !important;
+        }
+
+    /* Dikkat: Bu, .food_section altındaki TÜM kartları etkileyecektir */
+    .food_section .box .img-box {
+        height: 220px !important;
+        padding: 0 !important; /* Padding'i sıfırlamak en kritik adım */
+        margin: 0 !important;
+        /* Üst ovali uygulayın (15px sizin görselinize göre bir tahmin) */
+        border-radius: 15px 15px 0 0 !important;
+        background: none !important;
+        display: block !important;
+    }
+
+        .food_section .box .img-box img {
+            width: 100% !important;
+            height: 100% !important;
+            /* object-fit: cover ile giydirme */
+            object-fit: cover !important;
+            max-width: none !important;
+            max-height: none !important;
+            /* Resme de ovali uygulayın */
+            border-radius: 15px 15px 0 0 !important;
+        }
+
+    .food_section .box {
+        margin-top: 0px !important;
+        margin-bottom: 25px !important;
+    }
+</style>
+
 <section class="food_section layout_padding-bottom">
     <div class="container">
         <div class="heading_container heading_center">
@@ -22,8 +78,12 @@
                     <div class="col-sm-6 col-lg-4 all pizza">
                         <div class="box">
                             <div>
-                                <div class="img-box">
-                                    <img src="@item.ImageUrl" alt="">
+                                <div class="food_section">
+                                    <div class="box my-custom-product-card">
+                                        <div class="img-box">
+                                            <img src="@item.ImageUrl" alt="">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="detail-box">
                                     <h5>
