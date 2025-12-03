@@ -26,7 +26,8 @@ namespace SignalR.DataAccessLayer.EntityFramework
         public decimal TodayTotalPrice()
         {
             using var context = new SignalRContext();
-            return context.Orders.Where(x => x.Description == "Hesap Kapatıldı" && x.Date.Day == DateTime.Now.Day && x.Date.Month == DateTime.Now.Month && x.Date.Year == DateTime.Now.Year).Sum(y => y.TotalPrice);
+            //return context.Orders.Where(x => x.Description == "Hesap Kapatıldı" && x.Date.Day == DateTime.Now.Day && x.Date.Month == DateTime.Now.Month && x.Date.Year == DateTime.Now.Year).Sum(y => y.TotalPrice);
+            return context.Orders.Where(x => x.Date.Date == DateTime.Today).Sum(y => y.TotalPrice);
         }
 
         public int TotalOrderCount()
