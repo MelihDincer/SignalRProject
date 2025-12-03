@@ -19,6 +19,11 @@ namespace SignalRWebUI.ViewComponents.DefaultComponents
             var responseMessage = await client.GetAsync("https://localhost:7029/api/Product");
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
+            if (values != null)
+            {
+                var last9Product = values.OrderByDescending(x => x.ProductID).Take(9).ToList();
+                return View(last9Product);
+            }
             return View(values);
         }
     }
