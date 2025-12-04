@@ -1,0 +1,28 @@
+﻿@* Menü Kategorileri *@
+
+@model List<ResultCategoryDto>
+
+<ul class="filters_menu" data-aos="fade-up" data-aos-delay="100">
+    <li class="active" data-filter="*">Tümü</li>
+    @foreach (var item in Model)
+    {
+        var cssClass = item.CategoryName
+        .ToLower()
+        .Replace("ç", "c").Replace("ğ", "g").Replace("ı", "i")
+        .Replace("ö", "o").Replace("ş", "s").Replace("ü", "u")
+        .Replace(" ", "-");
+
+        <li data-filter=".@cssClass">@item.CategoryName</li>
+    }
+</ul>
+
+
+
+
+@* <ul class="filters_menu" data-aos="fade-up" data-aos-delay="100">
+    <li class="active" data-filter="*">Tüm Ürünler</li>
+    <li data-filter=".burger">Hamburger</li>
+    <li data-filter=".pizza">Pizza</li>
+    <li data-filter=".pasta">Makarna</li>
+    <li data-filter=".fries">Atıştırmalar</li>
+</ul> *@

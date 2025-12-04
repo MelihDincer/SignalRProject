@@ -3,7 +3,7 @@
     <div class="container">
         <div class="heading_container">
             <h2>
-                Rezervasyon Yapın
+                Bize Ulaşın
             </h2>
         </div>
         <div class="row">
@@ -35,9 +35,24 @@
             </div>
             <div class="col-md-6">
                 <div class="map_container ">
-                    <div id="googleMap"></div>
+                    <iframe src="@ViewBag.location" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var successMessage = '@Html.Raw(TempData["SuccessMessage"])';
+        if (successMessage && successMessage.trim() !== "") {
+            Swal.fire({
+                title: 'Teşekkürler!',
+                text: successMessage,
+                icon: 'success',
+                confirmButtonText: 'Tamam'
+            });
+        }
+    });
+</script>
