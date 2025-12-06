@@ -76,21 +76,17 @@
                     Menümüz
                 </h2>
             </div>
-            <ul class="filters_menu">
-                <li class="active" data-filter="*">Tüm Ürünler</li>
-                <li data-filter=".burger">Hamburger</li>
-                <li data-filter=".pizza">Pizza</li>
-                <li data-filter=".pasta">Makarna</li>
-                <li data-filter=".fries">Kızartmalar</li>
-                <li data-filter=".fries">Salatalar</li>
-                <li data-filter=".fries">Tatlılar</li>
-                <li data-filter=".fries">İçecekler</li>
-            </ul>
+            @await Component.InvokeAsync("_DefaultMenuCategoriesPartialComponent")
             <div class="filters-content">
                 <div class="row grid">
                     @foreach (var item in Model)
                     {
-                        <div class="col-sm-6 col-lg-4 all pizza">
+                        var cssClass = item.CategoryName
+                        .ToLower()
+                        .Replace("ç", "c").Replace("ğ", "g").Replace("ı", "i")
+                        .Replace("ö", "o").Replace("ş", "s").Replace("ü", "u")
+                        .Replace(" ", "-");
+                        <div class="col-sm-6 col-lg-4 all @cssClass">
                             <div class="box">
                                 <div>
                                     <div class="food_section">
