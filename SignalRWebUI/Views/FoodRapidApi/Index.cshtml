@@ -1,0 +1,116 @@
+﻿@model List<ResultTastyApiDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+    int count = 0;
+}
+
+@await Component.InvokeAsync("_UILayoutHeadPartialComponent")
+
+<body class="sub_page">
+    <style>
+        .video-link {
+            font-size: 28px;
+            color: #e84118;
+            transition: 0.2s;
+        }
+
+            .video-link:hover {
+                color: #c23616;
+                transform: scale(1.15);
+            }
+    </style>
+
+    <div class="hero_area">
+
+        @await Component.InvokeAsync("_UILayoutNavbarPartialComponent")
+    </div>
+    <br />
+    <br />
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb mb-30" style="background-color:#2f3640; color:#f5f6fa">
+                    <a class="breadcrumb-item text-white" href="/Default/Index/">Ana Sayfa</a>
+                    <a class="breadcrumb-item text-white" href="/Menu/Index/">Api Listesi</a>
+                    <span class="breadcrumb-item active">Tasty Api</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-lg-12 table-responsive mb-5">
+                @if (Model.Any())
+                {
+                    <table class="table table-borderless table-hover text-center mb-0" style="color:#2f3542; background-color:#d2dae2; font-weight:700; border-radius:5px">
+                        <thead style="background-color: #2f3640; color:#f5f6fa;">
+                            <tr>
+                                <th>#</th>
+                                <th>Görsel</th>
+                                <th>Tarif Adı</th>
+                                <th>Ortalama Hazırlama Süresi(dakika)</th>
+                                <th>Video</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model)
+                        {
+                            count++;
+                            <tbody class="align-middle">
+                                <tr>
+                                    <td class="align-middle">@count</td>
+                                    <td class="align-middle"><img src="@item.thumbnail_url" style="width:52px; height:52px; border-radius: 100%;" /></td>
+                                    <td>@item.name</td>
+                                    @{
+                                        if(item.total_time_minutes == 0)
+                                        {
+                                            <td class="align-middle">
+                                                15
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td class="align-middle">
+                                                @item.total_time_minutes
+                                            </td>
+                                        }
+                                    }
+                                   
+                                    <td class="align-middle">
+                                        @if (!string.IsNullOrEmpty(item.video_url))
+                                        {
+                                            <a href="@item.video_url" target="_blank"
+                                               class="video-link" title="Videoyu Aç">
+                                                <i class="fa fa-play-circle"></i>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <span style="color:gray;">—</span>
+                                        }
+                                    </td>
+
+                                    @*                                     <td class="align-middle btn-delete"><a class="btn btn-sm btn-danger" href="/Basket/DeleteBasket/@item.BasketID"><i class="fa fa-times"></i></a></td>
+ *@                                </tr>
+                            </tbody>
+                        }
+
+                    </table>
+                }
+                else
+                {
+                    <h4 class="mt-5 pl-5" style="color:darkorange">
+                        Tarif listesi güncellenmektedir. Sabrınız için teşekkür ederiz.
+
+                    </h4>
+                }
+            </div>
+
+        </div>
+    </div>
+
+    @await Component.InvokeAsync("_UILayoutFooterPartialComponent")
+
+    @await Component.InvokeAsync("_UILayoutScriptPartialComponent")
+
+</body>
