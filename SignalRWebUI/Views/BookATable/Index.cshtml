@@ -26,12 +26,15 @@
                         <form method="post">
                             <div>
                                 <input type="text" class="form-control" placeholder="Adınız Soyadınız" asp-for="Name" />
+                                <span asp-validation-for="Name" class="text-danger text-sm-start"></span>
                             </div>
                             <div>
                                 <input type="text" class="form-control" placeholder="Telefon Numaranız" asp-for="Phone"/>
+                                <span asp-validation-for="Phone" class="text-danger text-sm-start"></span>
                             </div>
                             <div>
                                 <input type="email" class="form-control" placeholder="Mail Adresiniz"  asp-for="Mail"/>
+                                <span asp-validation-for="Mail" class="text-danger text-sm-start"></span>
                             </div>
                             <div>
                                 <select class="form-control nice-select wide" asp-for="PersonCount">
@@ -57,9 +60,15 @@
                                         6++
                                     </option>
                                 </select>
-                            </div>
+                                <span asp-validation-for="PersonCount" class="text-danger text-sm-start"></span>
+                            </div>                          
                             <div>
                                 <input type="date" class="form-control" asp-for="Date">
+                                <span asp-validation-for="Date" class="text-danger text-sm-start"></span>
+                            </div>
+                            <div>
+                                <textarea class="form-control" placeholder="Varsa eklemek istedikleriniz..." asp-for="Description" rows="5"></textarea>
+                                <span asp-validation-for="Description" class="text-danger text-sm-start"></span>
                             </div>
                             <div class="btn_box">
                                 <button>
@@ -71,12 +80,27 @@
                 </div>
                 <div class="col-md-6">
                     <div class="map_container ">
-                        <div id="googleMap"></div>
+                        <iframe src="@ViewBag.location" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var successMessage = '@Html.Raw(TempData["SuccessMessage"])';
+            if (successMessage && successMessage.trim() !== "") {
+                Swal.fire({
+                    title: 'Teşekkürler!',
+                    text: successMessage,
+                    icon: 'success',
+                    confirmButtonText: 'Tamam'
+                });
+            }
+        });
+    </script>
 
     @await Component.InvokeAsync("_UILayoutFooterPartialComponent")
 
