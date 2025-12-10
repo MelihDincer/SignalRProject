@@ -4,7 +4,8 @@
     Layout = null;
     int count = 0;
 }
-
+<!DOCTYPE html>
+<html>
 @await Component.InvokeAsync("_UILayoutHeadPartialComponent")
 
 <body class="sub_page">
@@ -21,18 +22,16 @@
             }
     </style>
 
-    <div class="hero_area">
-
-        @await Component.InvokeAsync("_UILayoutNavbarPartialComponent")
+    @await Component.InvokeAsync("_UILayoutNavbarPartialComponent")
     </div>
     <br />
     <br />
     <div class="container-fluid">
         <div class="row px-xl-5">
             <div class="col-12">
-                <nav class="breadcrumb mb-30" style="background-color:#2f3640; color:#f5f6fa">
-                    <a class="breadcrumb-item text-white" href="/Default/Index/">Ana Sayfa</a>
-                    <a class="breadcrumb-item text-white" href="/Menu/Index/">Api Listesi</a>
+                <nav class="breadcrumb bg-dark mb-30">
+                    <a class="breadcrumb-item text-white" href="/Default/Index">Ana Sayfa</a>
+                    <a class="breadcrumb-item text-white" href="/Menu/Index">Api Listesi</a>
                     <span class="breadcrumb-item active">Tasty Api</span>
                 </nav>
             </div>
@@ -114,3 +113,4 @@
     @await Component.InvokeAsync("_UILayoutScriptPartialComponent")
 
 </body>
+</html>

@@ -17,8 +17,9 @@ namespace SignalRWebUI.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int id)
         {
+            TempData["customerSelectedTable"] = id;
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7029/api/Product/ProductListWithCategory");
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -30,7 +31,8 @@ namespace SignalRWebUI.Controllers
         public async Task<IActionResult> AddBasket(int id)
         {
             CreateBasketDto createBasketDto = new CreateBasketDto();
-            createBasketDto.ProductID = id; 
+            createBasketDto.ProductID = id;
+            createBasketDto.MenuTableID = int.Parse(TempData["customerSelectedTable"].ToString());
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createBasketDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
