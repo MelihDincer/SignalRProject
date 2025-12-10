@@ -66,5 +66,19 @@ namespace SignalRApi.Controllers
         {
             return Ok(_menuTableService.TGetByID(id));
         }
+
+        [HttpGet("ChangeMenuTableStatusTrue")]
+        public IActionResult ChangeMenuTableStatusTrue(int id)
+        {
+            _menuTableService.TChangeMenuTableStatusToTrue(id);
+            return Ok("İşlem başarılı");
+        }
+
+        [HttpGet("ChangeMenuTableStatusFalse")]
+        public IActionResult ChangeMenuTableStatusFalse(int id)
+        {
+            _menuTableService.TChangeMenuTableStatusToFalse(id);
+            return Ok("İşlem başarılı");
+        }
     }
 }
